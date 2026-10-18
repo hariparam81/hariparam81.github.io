@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+import { profile, workbench } from '../../data/site';
+---
+
+<Base title={workbench.title} description={workbench.description}>
+  <article class="project-detail">
+    <header class="detail-hero">
+      <p class="eyebrow">Personal project · Design overview</p>
+      <h1>{workbench.title}</h1>
+      <p class="lede">{workbench.description}</p>
+      <p class="detail-links"><a class="view-link" href={profile.github} rel="me">GitHub profile →</a></p>
+    </header>
+
+    <section class="detail-section">
+      <h2>How it <em>works</em></h2>
+      <p>
+        The proposed workbench frames model selection as an empirical platform decision. For each workload,
+        define the expected outcome, evaluate candidate models under recorded conditions, and relate
+        observed quality to serving cost. The result is a decision teams can inspect and revisit as
+        models, workloads, and constraints change.
+      </p>
+      <div class="callout">
+        <p><strong>Operating principle:</strong> recommend from measured outcomes and make the
+          evaluation context visible. A score without its workload and conditions is not a useful
+          platform decision.</p>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>Evaluation <em>tracks</em></h2>
+      <div class="track-grid">
+        {workbench.tracks.map((track, index) => (
+          <article class="track-card">
+            <p class="eyebrow">Track 0{index + 1}</p>
+            <h3>{track.title}</h3>
+            <p>{track.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>Key design <em>decisions</em></h2>
+      <div class="decision-list">
+        {workbench.decisions.map((decision, index) => (
+          <div class="decision-row">
+            <span class="decision-number">0{index + 1}</span>
+            <div><h3>{decision.title}</h3><p>{decision.body}</p></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>Trust and <em>governance</em></h2>
+      <p>
+        Enterprise adoption depends on more than a model score. The evaluation design should make
+        inputs, source grounding, action constraints, and outcome provenance inspectable. For
+        enterprise RAG, permission-aware access and the evidence behind an answer are central
+        requirements; they should be evaluated as part of the workload rather than treated as
+        deployment details.
+      </p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Extensibility</h2>
+      <p>
+        A new model should be introduced through a recorded configuration; a new use case should
+        arrive with its own task suite and success criteria. This keeps comparisons legible as the
+        workbench grows and avoids silently changing what a score means.
+      </p>
+    </section>
+
+    <section class="detail-section">
+      <h2>Measured <em>results</em></h2>
+      <div class="todo-note">
+        TODO: Add measured benchmark results after runs are available. Include the workload, model
+        configuration, evaluation conditions, task quality, and serving cost for every reported
+        comparison. Do not infer or estimate results.
+      </div>
+      <table class="spec">
+        <tbody>
+          <tr><th scope="row">Quality</th><td>Measured task success for each evaluation track</td></tr>
+          <tr><th scope="row">Economics</th><td>Serving cost associated with each measured configuration</td></tr>
+          <tr><th scope="row">Traceability</th><td>Workload, model, configuration, and run conditions</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="detail-section">
+      <h2>Technical <em>architecture</em></h2>
+      <p>
+        The design separates workload definitions, model configurations, evaluation runs, and
+        result reporting. That boundary allows teams to add models and tasks independently while
+        preserving the context behind each comparison. Implementation details and measured results
+        belong here once they are verified from the project itself.
+      </p>
+      <table class="spec">
+        <tbody>
+          {workbench.stack.map((item) => (
+            <tr><th scope="row">{item.label}</th><td>{item.value}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <nav class="detail-navigation" aria-label="Project navigation">
+      <a href="/#projects">← Back to projects</a>
+      <a href={`mailto:${profile.email}`}>Discuss platform leadership →</a>
+    </nav>
+  </article>
+</Base>
