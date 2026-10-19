@@ -35,8 +35,9 @@ const canonicalUrl = new URL(canonicalPath, profile.siteUrl).toString();
       <nav class="nav">
       <a class="nav-brand" href="/">{profile.name}</a>
         <div class="nav-links">
+          <a href="/#work">Work</a>
           <a href="/#projects">Projects</a>
-          <a href="/#stack">Stack</a>
+          <a href="/#volunteering">Volunteering</a>
           <a href="/#contact">Contact</a>
         </div>
       </nav>
@@ -49,7 +50,7 @@ const canonicalUrl = new URL(canonicalPath, profile.siteUrl).toString();
     <footer class="site-footer">
       <p>
         © {new Date().getFullYear()} {profile.name} · Built with Astro ·
-        <a href={profile.linkedin}>LinkedIn</a> · <a href={profile.github}>GitHub</a>
+        <a href={profile.linkedin}>LinkedIn</a>
       </p>
     </footer>
   </body>
