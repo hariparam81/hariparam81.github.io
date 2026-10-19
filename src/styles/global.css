@@ -13,24 +13,33 @@ h1 i,h2 i { color:var(--accent); font-style:normal; }
 h2 { font-size:clamp(1.7rem,3vw,2.3rem); margin:0 0 1.6rem; }
 h3 { font-size:1.2rem; margin-bottom:.6rem; }
 .eyebrow { color:var(--accent); font:500 .68rem var(--mono); letter-spacing:.09em; text-transform:uppercase; margin:0 0 .9rem; }
-.site-header { position:sticky; top:0; z-index:5; background:rgba(246,245,240,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+.site-header { position:sticky; top:0; z-index:5; background:var(--teal); border-bottom:1px solid rgba(230,240,232,.12); }
 .nav { max-width:var(--maxw); margin:auto; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; }
-.nav-brand { font:700 .92rem var(--display); letter-spacing:-.02em; }
+.nav-brand { color:#f5f3ec; font:700 .92rem var(--display); letter-spacing:-.02em; }
 .nav-links { display:flex; gap:1.6rem; }
-.nav-links a { color:var(--muted); font:400 .7rem var(--mono); text-transform:uppercase; letter-spacing:.07em; }
-.nav-links a:hover { color:var(--ink); }
+.nav-links a { color:#c4d0ca; font:400 .7rem var(--mono); text-transform:uppercase; letter-spacing:.07em; }
+.nav-links a:hover { color:#fff; }
 main { padding:0; }
-.hero { max-width:var(--maxw); margin:0 auto; padding:5.5rem 1.5rem 4rem; display:grid; grid-template-columns:1.5fr 1fr; gap:4rem; align-items:center; }
+.hero { padding:5.5rem max(calc((100vw - var(--maxw))/2 + 1.5rem), 1.5rem) 4.5rem; background:var(--teal); color:#f5f3ec; position:relative; overflow:hidden; display:grid; grid-template-columns:1.5fr 1fr; gap:4rem; align-items:center; }
 .lede { color:var(--muted); font-size:1.08rem; max-width:52ch; }
+.hero .lede { color:#c4d0ca; }
+.hero h1 i { color:#e57a4d; }
+.hero .eyebrow { color:#d9a083; }
+.hero:after { content:''; position:absolute; width:520px; height:520px; right:-120px; top:-100px; border:1px solid rgba(225,236,224,.12); border-radius:50%; box-shadow:0 0 0 70px rgba(225,236,224,.025),0 0 0 140px rgba(225,236,224,.02); pointer-events:none; }
+.hero > * { position:relative; z-index:1; }
 .hero-actions { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.8rem; }
 .btn { display:inline-block; padding:.7rem 1.15rem; background:var(--teal); color:#fff; font:500 .74rem var(--mono); border-radius:2px; }
 .btn:hover { color:#fff; background:#0f3331; }
 .btn.ghost { background:transparent; color:var(--teal); border:1px solid var(--teal); }
 .btn.ghost:hover { color:var(--teal); background:var(--tint); }
-.glance { margin:0; padding:1.4rem 1.5rem; background:#fff; border:1px solid var(--line); border-top:3px solid var(--accent); border-radius:3px; }
-.glance div { display:flex; justify-content:space-between; gap:1rem; padding:.55rem 0; border-top:1px solid var(--line); font-size:.88rem; }
+.hero .btn { background:#e57a4d; color:#fff; }
+.hero .btn:hover { background:#d46a3d; color:#fff; }
+.hero .btn.ghost { background:transparent; color:#f5f3ec; border:1px solid rgba(245,243,236,.45); }
+.hero .btn.ghost:hover { background:rgba(245,243,236,.08); color:#fff; }
+.glance { margin:0; padding:1.4rem 1.5rem; background:rgba(255,255,255,.04); border:1px solid rgba(230,240,232,.2); border-top:3px solid #e57a4d; border-radius:3px; }
+.glance div { display:flex; justify-content:space-between; gap:1rem; padding:.55rem 0; border-top:1px solid rgba(230,240,232,.15); font-size:.88rem; }
 .glance .eyebrow + div { border-top:0; }
-.glance dt { color:var(--muted); font:400 .68rem var(--mono); text-transform:uppercase; letter-spacing:.05em; padding-top:.2rem; }
+.glance dt { color:#a9bdb4; font:400 .68rem var(--mono); text-transform:uppercase; letter-spacing:.05em; padding-top:.2rem; }
 .glance dd { margin:0; font-weight:600; text-align:right; }
 .band { max-width:var(--maxw); margin:0 auto; padding:3.5rem 1.5rem; border-top:1px solid var(--line); }
 .tiles { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
@@ -96,6 +105,7 @@ table.spec th { color:var(--muted); font-weight:600; width:28%; }
   .nav-links { gap:.8rem; }
   .nav-links a { font-size:.6rem; }
   .hero,.band { padding-left:1.25rem; padding-right:1.25rem; }
+  .hero:after { right:-60%; }
   .tiles { grid-template-columns:1fr; }
   .work-item { padding:1.3rem; }
   .project-detail { padding:5rem 1.25rem 3rem; }
