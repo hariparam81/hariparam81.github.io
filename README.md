@@ -14,7 +14,7 @@ npm run build    # static output in dist/
 
 - Profile content and project descriptions live in `src/data/site.ts`.
 - GitHub repository: [hariparam81/hariparam81.github.io](https://github.com/hariparam81/hariparam81.github.io).
-- Add a resume PDF at `public/resume.pdf` to show the homepage download button. The button is omitted when the file is absent.
+- The site intentionally has no resume download or employer names; LinkedIn carries the career history.
 - Add verified benchmark results to the workbench page only after measured runs are available. The results TODO is intentional.
 - The canonical domain is `https://harishparam.com` (registered at Cloudflare). `public/CNAME` keeps the custom domain set on every deploy.
 

@@ -1,91 +1,92 @@
 // Central content for the portfolio. Edit this file to update the site.
 // Honesty rule: only list metrics/tools you have actually used or measured.
+// No employer names on the site by design; LinkedIn carries the career history.
 
 export const profile = {
   name: "Harish Parameswaran",
-  role: "Engineering Leader · Data & AI Platforms",
+  role: "Engineering leader · Data & AI platforms",
   tagline:
-    "I build the platform that onboards agentic workloads — conversational analytics and enterprise RAG, running reliably at enterprise scale.",
+    "I build the data platform that onboards agentic workloads, from real-time streaming to semantic layers, running reliably at enterprise scale.",
   location: "Bay Area, CA",
   email: "harishparam@icloud.com",
   linkedin: "https://www.linkedin.com/in/hparameswaran",
-  github: "https://github.com/hariparam81",
-  githubHandle: "hariparam81",
   siteUrl: "https://harishparam.com",
-  resumePath: "/resume.pdf",
+};
+
+export const hero = {
+  before: "Make the data platform ready for",
+  emphasis: "agents.",
 };
 
 export const atAGlance = [
-  { label: "Role", value: "Engineering leadership · Data & AI platform" },
+  { label: "Role", value: "Engineering leadership" },
   { label: "Experience", value: "20+ years" },
   { label: "Location", value: "Bay Area, CA" },
-  { label: "Focus", value: "Data & AI Platforms · Agentic AI" },
+  { label: "Focus", value: "Data & AI platforms · Agentic AI" },
+];
+
+export const explore = [
+  { label: "Platform work", blurb: "Real-time data infrastructure and semantic layers for agents.", href: "#work" },
+  { label: "Projects", blurb: "A measurement-led workbench for comparing models.", href: "#projects" },
+  { label: "Volunteering", blurb: "Supporting families through a child’s medical crisis.", href: "#volunteering" },
+  { label: "LinkedIn", blurb: "Career history, recommendations, and the full background.", href: profile.linkedin },
+];
+
+export const work = [
+  {
+    title: "Real-time Data Infrastructure",
+    blurb:
+      "A governed, self-service data-products platform that serves both people and AI consumers, with idempotent, checkpointed pipelines feeding production ML and AI workloads.",
+    facts: [
+      { value: "25M+", label: "streaming events a day" },
+      { value: "28", label: "regions" },
+      { value: "75 min → <3 min", label: "end-to-end data latency" },
+      { value: "99.1% → 99.99%+", label: "data quality" },
+    ],
+    tags: ["Streaming", "Data products", "Reliability"],
+  },
+  {
+    title: "Semantic Layers for Ontology-Driven Agents",
+    blurb:
+      "Automated semantic extraction over code, documentation, and database metadata into versioned semantic contracts and an ontology with provenance, confidence, and permission models.",
+    facts: [
+      { value: "~30% → 85%", label: "NL2SQL benchmark accuracy" },
+      { value: "Versioned", label: "semantic contracts" },
+      { value: "3", label: "trust models: provenance, confidence, permissions" },
+    ],
+    tags: ["NL2SQL", "Ontology", "Governance"],
+  },
 ];
 
 export interface Project {
   slug?: string; // when set, card links to /projects/<slug>/
   title: string;
-  org: string; // Project context, such as personal work or current work
-  status: string; // "Flagship" | "Live" | "In progress" | "Planned"
+  status: string;
   blurb: string;
   tags: string[];
-  repo?: string;
-  live?: string;
 }
 
 export const projects: Project[] = [
   {
     slug: "inference-economics-workbench",
     title: "Inference Economics Workbench",
-    org: "Design concept",
-    status: "In progress",
+    status: "In design",
     blurb:
       "A proposed measurement-led approach to comparing models across conversational analytics, enterprise RAG, and tool use. Benchmark results remain pending measured runs.",
-    tags: ["Conversational analytics", "Enterprise RAG", "Model evaluation"],
-  },
-  {
-    title: "Conversational Analytics",
-    org: "Current work",
-    status: "In progress",
-    blurb:
-      "Onboarding NL2SQL workloads onto the data platform, with execution accuracy improving from 30% to 85%.",
-    tags: ["Agentic workloads", "NL2SQL", "Data platform"],
-  },
-  {
-    title: "Enterprise RAG",
-    org: "Current work",
-    status: "In progress",
-    blurb:
-      "A versioned semantic extraction engine for enterprise retrieval-augmented generation, built around semantic contracts and an ontology with provenance, confidence, and permission models.",
-    tags: ["Agentic workloads", "Semantic contracts", "Governance"],
+    tags: ["Model evaluation", "Conversational analytics", "Enterprise RAG"],
   },
 ];
 
-export const stack: { group: string; items: string[] }[] = [
-  {
-    group: "Platform leadership",
-    items: ["Enterprise cloud platforms", "Data platforms", "Platform onboarding", "Reliability"],
-  },
-  {
-    group: "Agentic workloads",
-    items: ["Conversational analytics", "NL2SQL", "Enterprise RAG", "Semantic contracts", "Ontologies"],
-  },
-  {
-    group: "Governance & trust",
-    items: ["Provenance", "Confidence", "Permission models", "Responsible platform adoption"],
-  },
-];
-
-export const currentWork = {
-  title: "Unified data and AI platform",
-  body: "I manage global teams building a unified data and AI platform that processes 25M+ streaming events a day across 28 regions. The current focus is onboarding agentic workloads: conversational analytics (NL2SQL execution accuracy improved from 30% to 85%) and enterprise RAG through a versioned semantic extraction engine with semantic contracts, ontology, provenance, confidence, and permission models.",
+export const volunteering = {
+  org: "There With Care",
+  url: "https://therewithcare.org/volunteer-to-help-families-in-crisis/",
+  body: "I volunteer with There With Care, a nonprofit that supports families facing a child’s medical crisis with care bags of groceries and essential supplies.",
 };
 
 export const focusAreas = [
-  "Onboarding agentic workloads onto data platforms — the promotion path from provider capability to platform feature",
-  "Conversational analytics (NL2SQL) and enterprise RAG as the two strong agentic motions",
-  "Inference economics — measured accuracy-per-dollar as the way teams should pick models",
-    "Director / VP Data & AI Platform roles",
+  "Onboarding agentic workloads onto data platforms",
+  "Conversational analytics and enterprise RAG, measured on outcomes",
+  "Inference economics: accuracy per dollar as the way teams pick models",
 ];
 
 export const workbench = {

@@ -1,113 +1,99 @@
 ---
 import Base from '../layouts/Base.astro';
-import { profile, atAGlance, projects, stack, currentWork, focusAreas } from '../data/site';
-import { existsSync } from 'node:fs';
-
-const resumeAvailable = existsSync(new URL('../../public/resume.pdf', import.meta.url));
+import { profile, hero, atAGlance, explore, work, projects, volunteering, focusAreas } from '../data/site';
 ---
 
 <Base title={profile.name}>
-  <section class="lead-hero">
-    <div class="lead-copy">
-      <p class="hero-kicker">{profile.role}</p>
-      <h1>Make the data platform ready for <i>agents.</i></h1>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">{profile.role}</p>
+      <h1>{hero.before} <i>{hero.emphasis}</i></h1>
       <p class="lede">{profile.tagline}</p>
-      <div class="hero-actions"><a href="#platform">Explore the platform work <b>↓</b></a><a href={`mailto:${profile.email}`}>Get in touch <b>↗</b></a></div>
-    </div>
-    <aside class="hero-aside" aria-label="Platform scale">
-      <p class="aside-label">A platform at work</p>
-      <div class="scale-number">25<span>M+</span></div><p>streaming events each day</p>
-      <div class="scale-divider"></div>
-      <div class="scale-number">28</div><p>regions</p>
-      <div class="scale-divider"></div>
-      <div class="scale-number">Global</div><p>leading distributed teams</p>
-    </aside>
-    <div class="hero-index">DATA SYSTEMS <span>•</span> APPLIED AI <span>•</span> PLATFORM LEADERSHIP</div>
-  </section>
-
-  <section class="about-section">
-    <p class="eyebrow">About me</p>
-    <div class="about-grid">
-      <h2>Two decades turning<br /><i>complex systems</i><br />into platforms.</h2>
-      <div class="about-copy">
-        <p>I’m Harish Parameswaran, an engineering leader with 20+ years building enterprise cloud and data platforms. I manage global teams focused on bringing agentic workloads onto a unified data and AI platform.</p>
-        <p>My current work sits where platform engineering meets applied AI: making conversational analytics and enterprise RAG operate with the context, controls, and reliability that enterprise data requires.</p>
-        <a class="text-link" href="#career">A short history of the work <span>↓</span></a>
+      <div class="hero-actions">
+        <a class="btn" href="#work">See the work</a>
+        <a class="btn ghost" href={profile.linkedin}>LinkedIn ↗</a>
       </div>
     </div>
+    <dl class="glance" aria-label="At a glance">
+      <p class="eyebrow">At a glance</p>
+      {atAGlance.map((g) => <div><dt>{g.label}</dt><dd>{g.value}</dd></div>)}
+    </dl>
   </section>
 
-  <section id="platform" class="platform-section">
-    <div class="section-heading">
-      <p class="eyebrow">01 / Platform agenda</p>
-      <h2>From model capability<br />to <i>platform feature.</i></h2>
-      <p class="section-sub">The work is to make agentic workloads useful inside the governed enterprise data environment teams already depend on.</p>
+  <section class="band explore">
+    <p class="eyebrow">Explore</p>
+    <h2>Work &amp; writing</h2>
+    <div class="tiles">
+      {explore.map((e) => (
+        <a class="tile" href={e.href}>
+          <strong>{e.label}</strong>
+          <small>{e.blurb}</small>
+        </a>
+      ))}
     </div>
-    <div class="capability-list">
-      {projects.filter((p) => p.org === 'Current work').map((p, index) => (
-        <article class="capability">
-          <span class="cap-number">0{index + 1}</span>
-          <div><p class="cap-label">{index === 0 ? 'Ask questions in natural language' : 'Retrieve with enterprise context'}</p><h3>{p.title}</h3><p>{p.blurb}</p>
-            <div class="cap-tags">{p.tags.map((t) => <span>{t}</span>)}</div>
+  </section>
+
+  <section id="work" class="band">
+    <p class="eyebrow">Platform work</p>
+    <h2>What I build</h2>
+    <div class="work-list">
+      {work.map((w) => (
+        <article class="work-item">
+          <div>
+            <h3>{w.title}</h3>
+            <p>{w.blurb}</p>
+            <div class="tags">{w.tags.map((t) => <span>{t}</span>)}</div>
           </div>
-          <span class="cap-arrow">↗</span>
+          <dl class="facts">
+            {w.facts.map((f) => <div><dt>{f.value}</dt><dd>{f.label}</dd></div>)}
+          </dl>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="flywheel-section">
-    <p class="eyebrow">How I think about platform progress</p>
-    <div class="flywheel-heading"><h2>A platform<br /><i>flywheel.</i></h2><p>Each workload is a chance to strengthen the shared platform: learn from real use, turn what works into a governed capability, then make the next workload easier to onboard.</p></div>
-    <div class="flywheel" aria-label="Platform flywheel: onboard workloads, measure outcomes, encode reusable capabilities, expand adoption">
-      <div class="flywheel-step"><span>01</span><strong>Onboard a workload</strong><small>Start with a real data and user need</small></div>
-      <div class="flywheel-connector">→</div>
-      <div class="flywheel-step"><span>02</span><strong>Measure outcomes</strong><small>Evaluate task quality under stated conditions</small></div>
-      <div class="flywheel-connector">→</div>
-      <div class="flywheel-step"><span>03</span><strong>Encode the capability</strong><small>Bring context, permissions, and provenance into the platform</small></div>
-      <div class="flywheel-connector">→</div>
-      <div class="flywheel-step"><span>04</span><strong>Expand adoption</strong><small>Reuse platform capabilities for the next workload</small></div>
-    </div>
-    <p class="flywheel-note">Conversational analytics and enterprise RAG are two current workload paths through this cycle.</p>
-  </section>
-
-  <section class="operating-section">
-    <p class="eyebrow">02 / Operating context</p>
-    <div class="operating-grid">
-      <h2>Build for the<br /><i>real conditions.</i></h2>
-      <div><h3>{currentWork.title}</h3><p>{currentWork.body}</p></div>
-    </div>
-    <div class="operating-facts">
-      {atAGlance.filter((g) => g.label === 'Experience' || g.label === 'Location').map((g) => <div><span>{g.label}</span><strong>{g.value}</strong></div>)}
+  <section id="projects" class="band">
+    <p class="eyebrow">Projects</p>
+    <h2>Things I’m building</h2>
+    <div class="cards">
+      {projects.map((p) => (
+        <a class="card" href={`/projects/${p.slug}/`}>
+          <span class="status">{p.status}</span>
+          <h3>{p.title}</h3>
+          <p>{p.blurb}</p>
+          <div class="tags">{p.tags.map((t) => <span>{t}</span>)}</div>
+        </a>
+      ))}
     </div>
   </section>
 
-  <section id="projects" class="workbench-section">
-    <div class="workbench-copy"><p class="eyebrow">03 / In design</p><h2>Inference<br /><i>economics.</i></h2><p>A workbench concept for comparing models across practical enterprise workloads, with measured task quality and serving cost as the decision lens.</p><a class="text-link" href="/projects/inference-economics-workbench/">Read the design overview <span>↗</span></a></div>
-    <div class="workbench-visual" aria-label="Evaluation dimensions"><span>WORKLOAD</span><b>×</b><span>MODEL</span><b>×</b><span>MEASURED OUTCOME</span><div class="visual-line"></div><small>DECISIONS GROUNDED IN RUNS</small></div>
-  </section>
-
-  <section class="leadership-section" id="career">
-    <p class="eyebrow">04 / Career</p><h2>Experience across<br /><i>platform eras.</i></h2>
-    <div class="career-list">
-      <div><span>2023 — NOW</span><strong>Director of Engineering</strong><small>Data and AI platform leadership</small></div>
-      <div><span>2017 — 2023</span><strong>Consulting Engineer / Senior Principal Engineer</strong><small>Enterprise cloud and data platforms</small></div>
-      <div><span>2015 — 2017</span><strong>Senior Manager, Solutions Consulting</strong><small>Marketo · led 5 solution engineers</small></div>
-      <div><span>2002 — 2015</span><strong>Demo Services</strong><small>Enterprise software demonstrations</small></div>
+  <section id="volunteering" class="band split">
+    <div>
+      <p class="eyebrow">Volunteering</p>
+      <h2>Beyond the platform</h2>
+    </div>
+    <div>
+      <p>{volunteering.body}</p>
+      <a class="text-link" href={volunteering.url}>{volunteering.org} ↗</a>
     </div>
   </section>
 
-  <section class="focus-section" id="stack">
-    <div><p class="eyebrow">05 / Areas of focus</p><h2>Where I can<br /><i>make a difference.</i></h2></div>
-    <div>{focusAreas.slice(0, 3).map((f, index) => <p class="focus-line"><span>0{index + 1}</span>{f}</p>)}
-      <div class="focus-tags">{stack.flatMap((g) => g.items).map((i) => <span>{i}</span>)}</div>
-      {resumeAvailable && <a class="btn" href={profile.resumePath}>Download resume <span>↗</span></a>}
+  <section class="band split">
+    <div>
+      <p class="eyebrow">Where I’m headed</p>
+      <h2>Focus areas</h2>
     </div>
+    <ul class="focus">{focusAreas.map((f) => <li>{f}</li>)}</ul>
   </section>
 
-  <section id="contact" class="contact-section">
-    <p class="eyebrow">06 / Contact</p><h2>Let’s build what<br />comes <i>next.</i></h2>
-    <div class="contact-row"><p>Open to Director and VP roles in Data & AI Platform leadership.</p><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email} <span>↗</span></a></div>
-    <p class="contact-links"><a href={profile.linkedin}>LinkedIn ↗</a><a href={profile.github}>GitHub ↗</a><span>{profile.location}</span></p>
+  <section id="contact" class="band contact">
+    <p class="eyebrow">Contact</p>
+    <h2>Let’s talk</h2>
+    <p>Open to Director and VP roles in Data &amp; AI platform leadership.</p>
+    <p class="contact-row">
+      <a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+      <a href={profile.linkedin}>LinkedIn ↗</a>
+      <span>{profile.location}</span>
+    </p>
   </section>
 </Base>
