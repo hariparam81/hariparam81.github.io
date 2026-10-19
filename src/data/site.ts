@@ -11,7 +11,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/hparameswaran",
   github: "https://github.com/hariparam81",
   githubHandle: "hariparam81",
-  siteUrl: "https://harishparam.js.org",
+  siteUrl: "https://harishparam.com",
   resumePath: "/resume.pdf",
 };
 
